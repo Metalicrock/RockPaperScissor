@@ -1,5 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(){
-    let computerChoice = "";
     let RNG = Math.floor(Math.random() * 3)
 
     if(RNG === 0){
@@ -25,26 +27,37 @@ function playRound(){
     console.log(playerChoice + " is the players pick");
     console.log(computerChoice + " is the computers pick");
     
-    if(playerChoice === computerChoice){
+    if(playerChoice.toLowerCase() === computerChoice.toLowerCase()){
         console.log("Its a Tie!");
-    }else if(playerChoice === "Rock" && computerChoice === "Paper"){
+    }else if(playerChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "paper"){
         console.log("Paper Beats Rock! You lose.");
-    }else if(playerChoice === "Paper" && computerChoice === "Rock"){
+        computerScore++;
+    }else if(playerChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock"){
         console.log("Paper Beats Rock! You win!");
-    }else if(playerChoice === "Scissor" && computerChoice === "Rock"){
+        playerScore++;
+    }else if(playerChoice.toLowerCase() === "scissor" && computerChoice.toLowerCase() === "rock"){
         console.log("Rock Beats Scissor! You lose");
-    }else if(playerChoice === "Rock" && computerChoice === "Scissor"){
-        console.log("Rock Beats Scissor! You Win.")
-    }else if(playerChoice === "Paper" && computerChoice === "Scissor"){
+        computerScore++;
+    }else if(playerChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissor"){
+        console.log("Rock Beats Scissor! You Win.");
+        playerScore++;
+    }else if(playerChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "scissor"){
         console.log("Scissor Beats paper! You lose.");
-    }else if(playerChoice === "Scissor" && computerChoice === "Paper"){
+        computerScore++;
+    }else if(playerChoice.toLowerCase() === "scissor" && computerChoice.toLowerCase() === "paper"){
         console.log("Scissor Beats Paper! You win.");
+        playerScore++;
     }
     
 }
 
-
-
+function playGame(rounds){
+    for(i = 0; i < rounds; i++){
+        playRound();
+        console.log("Player score is: " + playerScore);
+        console.log("Computer score is: " + computerScore);
+    }
+}
 console.log(getPlayerChoice());
 
 console.log(getComputerChoice());
